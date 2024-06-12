@@ -1,0 +1,54 @@
+// 1. script do SDK do pixel para envio de eventos
+
+<script>
+  ttq.track('ViewContent', {
+    contents: {{informar variável contendo os produtos do datalayer no formato do tiktok}},
+    value: {{informar variável contendo o valor total dos produtos}},
+    currency: 'BRL'
+  });
+</script>
+
+
+// 2. script para tradução da nomenclatura utilizada no dataLayer pelo GA, para a nomenclatura padrão do TikTok
+
+function getTiktokProducts() {
+  var products = {{informar variável que captura os produtos no dataLayer}};
+  return products.map(function(prod) {
+    return {
+        content_id: prod.id,
+        content_name: prod.name,
+        content_category: prod.category, 
+        brand: prod.brand,
+        price: prod.price,
+	      quantity: prod.quantity
+    }
+  });
+}
+
+
+// 3. script para tradução da nomenclatura utilizada no dataLayer pelo GA4, para a nomenclatura padrão do TikTok
+
+function getTiktokProducts() {
+  var products = {{informar variável que captura os produtos no dataLayer}};
+  return products.map(function(prod) {
+    return {
+        content_id: prod.item_id,
+        content_name: prod.item_name,
+        content_category: prod.item_category, 
+        brand: prod.item_brand,
+        price: prod.price,
+	      quantity: prod.quantity
+    }
+  });
+}
+
+
+// 4. script que captura o preço unitário de cada produto, multiplica pela quantidade e retorna o valor total
+
+function getTikTokProductsTotalValue() { 
+  var checkoutProducts = {{informar variável que captura os produtos no dataLayer}};
+
+  return checkoutProducts.reduce(function(acc, curr) {
+    return acc + Number(curr.price) * Number(curr.quantity);
+  }, 0);
+}
