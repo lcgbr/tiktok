@@ -1,4 +1,12 @@
+
 // 1. script do SDK do pixel para envio de eventos
+
+<script>
+  ttq.track('SubmitForm');
+</script>
+
+
+// 2. script do SDK do pixel para envio de eventos com parâmetros
 
 <script>
   ttq.track('ViewContent', {
@@ -9,7 +17,7 @@
 </script>
 
 
-// 2. script para tradução da nomenclatura utilizada no dataLayer pelo GA, para a nomenclatura padrão do TikTok
+// 3. script para tradução da nomenclatura utilizada no dataLayer pelo GA, para a nomenclatura padrão do TikTok
 
 function getTiktokProducts() {
   var products = {{informar variável que captura os produtos no dataLayer}};
@@ -26,7 +34,7 @@ function getTiktokProducts() {
 }
 
 
-// 3. script para tradução da nomenclatura utilizada no dataLayer pelo GA4, para a nomenclatura padrão do TikTok
+// 4. script para tradução da nomenclatura utilizada no dataLayer pelo GA4, para a nomenclatura padrão do TikTok
 
 function getTiktokProducts() {
   var products = {{informar variável que captura os produtos no dataLayer}};
@@ -43,7 +51,7 @@ function getTiktokProducts() {
 }
 
 
-// 4. script que captura o preço unitário de cada produto, multiplica pela quantidade e retorna o valor total
+// 5. script que captura o preço unitário de cada produto, multiplica pela quantidade e retorna o valor total
 
 function getTikTokProductsTotalValue() { 
   var checkoutProducts = {{informar variável que captura os produtos no dataLayer}};
@@ -52,3 +60,20 @@ function getTikTokProductsTotalValue() {
     return acc + Number(curr.price) * Number(curr.quantity);
   }, 0);
 }
+
+
+// 6. script para compartilhamento manual de dados do usuário (email: example@gmail.com) e/ou (tel: +5511997890987)
+
+<script>
+  ttq.identify({
+    email: {{informar variável contendo o endereço de email bruto do usuário}},
+    phone_number: {{informar variável contendo o número de telefone bruto do usuário}}
+  });
+</script>
+
+<script>
+  ttq.identify({
+    sha256_email: {{informar variável contendo o endereço de email do usuário hasheado no formato sha256}},
+    sha256_phone_number: {{informar variável contendo o número de telefone do usuário hasheado no formato sha256}}
+  });
+</script>
